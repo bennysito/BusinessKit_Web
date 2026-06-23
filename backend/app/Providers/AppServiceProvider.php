@@ -7,12 +7,16 @@ use App\Models\Department;
 use App\Models\EmployeeInformation;
 use App\Models\LeaveRequest;
 use App\Models\LeaveType;
+use App\Models\PayComponent;
+use App\Models\Payslip;
 use App\Models\Position;
 use App\Policies\AttendancePolicy;
 use App\Policies\DepartmentPolicy;
 use App\Policies\EmployeePolicy;
 use App\Policies\LeaveRequestPolicy;
 use App\Policies\LeaveTypePolicy;
+use App\Policies\PayComponentPolicy;
+use App\Policies\PayslipPolicy;
 use App\Policies\PositionPolicy;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Gate;
@@ -41,5 +45,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(LeaveType::class, LeaveTypePolicy::class);
         Gate::policy(LeaveRequest::class, LeaveRequestPolicy::class);
         Gate::policy(Attendance::class, AttendancePolicy::class);
+        Gate::policy(PayComponent::class, PayComponentPolicy::class);
+        Gate::policy(Payslip::class, PayslipPolicy::class);
     }
 }

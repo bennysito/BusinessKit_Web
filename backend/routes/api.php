@@ -7,6 +7,8 @@ use App\Http\Controllers\Api\Hr\EmployeeController;
 use App\Http\Controllers\Api\Hr\PositionController;
 use App\Http\Controllers\Api\Leave\LeaveRequestController;
 use App\Http\Controllers\Api\Leave\LeaveTypeController;
+use App\Http\Controllers\Api\Payroll\PayComponentController;
+use App\Http\Controllers\Api\Payroll\PayslipController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function (): void {
@@ -60,4 +62,18 @@ Route::middleware('auth:sanctum')->group(function (): void {
         ->middleware('permission:attendance.manage');
     Route::get('attendance/summary', [AttendanceController::class, 'summary'])
         ->middleware('permission:attendance.manage');
+
+    Route::apiResource('pay-components', PayComponentController::class)
+        ->parameters(['pay-components' => 'payComponent'])
+        ->middleware('permission:payroll.manage');
+
+    Route::apiResource('payslips', PayslipController::class)
+        ->only(['index', 'show'])
+        ->parameters(['payslips' => 'payslip'])
+        ->middleware('permission:payroll.manage');
+
+    Route::post('payslips/generate', [PayslipController::class, 'generate'])
+        ->middleware('permission:payroll.manage');
+    Route::post('payslips/{payslip}/mark-paid', [PayslipController::class, 'markPaid'])
+        ->middleware('permission:payroll.manage');
 });
