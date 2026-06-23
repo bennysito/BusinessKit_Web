@@ -2,11 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\Attendance;
 use App\Models\Department;
 use App\Models\EmployeeInformation;
+use App\Models\LeaveRequest;
+use App\Models\LeaveType;
 use App\Models\Position;
+use App\Policies\AttendancePolicy;
 use App\Policies\DepartmentPolicy;
 use App\Policies\EmployeePolicy;
+use App\Policies\LeaveRequestPolicy;
+use App\Policies\LeaveTypePolicy;
 use App\Policies\PositionPolicy;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Gate;
@@ -32,5 +38,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Department::class, DepartmentPolicy::class);
         Gate::policy(Position::class, PositionPolicy::class);
         Gate::policy(EmployeeInformation::class, EmployeePolicy::class);
+        Gate::policy(LeaveType::class, LeaveTypePolicy::class);
+        Gate::policy(LeaveRequest::class, LeaveRequestPolicy::class);
+        Gate::policy(Attendance::class, AttendancePolicy::class);
     }
 }
