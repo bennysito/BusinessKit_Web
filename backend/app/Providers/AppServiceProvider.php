@@ -10,6 +10,9 @@ use App\Models\LeaveType;
 use App\Models\PayComponent;
 use App\Models\Payslip;
 use App\Models\Position;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\StockMovement;
 use App\Policies\AttendancePolicy;
 use App\Policies\DepartmentPolicy;
 use App\Policies\EmployeePolicy;
@@ -18,6 +21,9 @@ use App\Policies\LeaveTypePolicy;
 use App\Policies\PayComponentPolicy;
 use App\Policies\PayslipPolicy;
 use App\Policies\PositionPolicy;
+use App\Policies\ProductCategoryPolicy;
+use App\Policies\ProductPolicy;
+use App\Policies\StockMovementPolicy;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -47,5 +53,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Attendance::class, AttendancePolicy::class);
         Gate::policy(PayComponent::class, PayComponentPolicy::class);
         Gate::policy(Payslip::class, PayslipPolicy::class);
+        Gate::policy(ProductCategory::class, ProductCategoryPolicy::class);
+        Gate::policy(Product::class, ProductPolicy::class);
+        Gate::policy(StockMovement::class, StockMovementPolicy::class);
     }
 }

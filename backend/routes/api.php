@@ -5,6 +5,9 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Hr\DepartmentController;
 use App\Http\Controllers\Api\Hr\EmployeeController;
 use App\Http\Controllers\Api\Hr\PositionController;
+use App\Http\Controllers\Api\Inventory\ProductCategoryController;
+use App\Http\Controllers\Api\Inventory\ProductController;
+use App\Http\Controllers\Api\Inventory\StockMovementController;
 use App\Http\Controllers\Api\Leave\LeaveRequestController;
 use App\Http\Controllers\Api\Leave\LeaveTypeController;
 use App\Http\Controllers\Api\Payroll\PayComponentController;
@@ -76,4 +79,14 @@ Route::middleware('auth:sanctum')->group(function (): void {
         ->middleware('permission:payroll.manage');
     Route::post('payslips/{payslip}/mark-paid', [PayslipController::class, 'markPaid'])
         ->middleware('permission:payroll.manage');
+
+    Route::prefix('inventory')->middleware('permission:inventory.manage')->group(function (): void {
+        Route::apiResource('categories', ProductCategoryController::class)
+            ->parameters(['categories' => 'category']);
+        Route::apiResource('products', ProductController::class)
+            ->parameters(['products' => 'product']);
+        Route::get('low-stock', [ProductController::class, 'lowStock']);
+        Route::get('stock-movements', [StockMovementController::class, 'index']);
+        Route::post('stock-adjust', [StockMovementController::class, 'store']);
+    });
 });
