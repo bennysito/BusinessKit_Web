@@ -221,7 +221,7 @@ For **Departments**, **Positions**, and **Employees**, each gets: model (relatio
 ## 12. Phased Roadmap (build order)
 
 1. **Foundation** [COMPLETE] — fixes in §2, Sanctum auth (§3), spatie RBAC (§4).
-2. **Core CRUD** — departments, positions, employees + resources / policies / tests (§5).
+2. **Core CRUD** [COMPLETE] — departments, positions, employees + resources / policies / tests (§5).
 3. **Leave + Attendance** (§6, §7).
 4. **Payroll basics** (§8).
 5. **Inventory** (§9).
