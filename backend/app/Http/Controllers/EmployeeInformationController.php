@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\EmployeeInformation;
 
 class EmployeeInformationController extends Controller
 {
@@ -11,16 +11,15 @@ class EmployeeInformationController extends Controller
     public function index()
     {
         return response()->json([
-            'employee_information' => \App\Models\EmployeeInformation::all(),
+            'employee_information' => EmployeeInformation::all(),
         ]);
     }
 
-
     public function getEmployeeInformation($employee_id)
     {
-        $employeeInformation = \App\Models\EmployeeInformation::where('employee_id', $employee_id)->first();
+        $employeeInformation = EmployeeInformation::where('employee_id', $employee_id)->first();
 
-        if (!$employeeInformation) {
+        if (! $employeeInformation) {
             return response()->json([
                 'message' => 'Employee information not found',
             ], 404);

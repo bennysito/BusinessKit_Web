@@ -15,14 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('employee_id')->unique();
+            $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('position_id')->nullable()->constrained()->nullOnDelete();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
-            $table->string('position')->nullable();
-            $table->string('department')->nullable();
             $table->date('date_of_hire')->nullable();
+            $table->string('employment_status')->default('active');
+            $table->decimal('salary', 12, 2)->nullable();
             $table->timestamps();
         });
     }
