@@ -12,6 +12,7 @@ use App\Models\Payslip;
 use App\Models\Position;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\Sale;
 use App\Models\StockMovement;
 use App\Policies\AttendancePolicy;
 use App\Policies\DepartmentPolicy;
@@ -23,6 +24,7 @@ use App\Policies\PayslipPolicy;
 use App\Policies\PositionPolicy;
 use App\Policies\ProductCategoryPolicy;
 use App\Policies\ProductPolicy;
+use App\Policies\SalePolicy;
 use App\Policies\StockMovementPolicy;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Gate;
@@ -56,5 +58,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(ProductCategory::class, ProductCategoryPolicy::class);
         Gate::policy(Product::class, ProductPolicy::class);
         Gate::policy(StockMovement::class, StockMovementPolicy::class);
+        Gate::policy(Sale::class, SalePolicy::class);
     }
 }

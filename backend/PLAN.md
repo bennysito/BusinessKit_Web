@@ -225,7 +225,7 @@ For **Departments**, **Positions**, and **Employees**, each gets: model (relatio
 3. **Leave + Attendance** [COMPLETE] (§6, §7).
 4. **Payroll basics** [COMPLETE] (§8).
 5. **Inventory** [COMPLETE] (§9).
-6. **POS sync** + inventory decrement + reporting (§10).
+6. **POS sync** [COMPLETE] + inventory decrement + reporting (§10).
 
 ---
 

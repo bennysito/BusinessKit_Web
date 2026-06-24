@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Leave\LeaveRequestController;
 use App\Http\Controllers\Api\Leave\LeaveTypeController;
 use App\Http\Controllers\Api\Payroll\PayComponentController;
 use App\Http\Controllers\Api\Payroll\PayslipController;
+use App\Http\Controllers\Api\Pos\PosSyncController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function (): void {
@@ -88,5 +89,14 @@ Route::middleware('auth:sanctum')->group(function (): void {
         Route::get('low-stock', [ProductController::class, 'lowStock']);
         Route::get('stock-movements', [StockMovementController::class, 'index']);
         Route::post('stock-adjust', [StockMovementController::class, 'store']);
+    });
+
+    Route::prefix('pos')->group(function (): void {
+        Route::post('sync', [PosSyncController::class, 'sync'])
+            ->middleware('permission:pos.sync');
+        Route::get('sales', [PosSyncController::class, 'index'])
+            ->middleware('permission:reports.view');
+        Route::get('sales/summary', [PosSyncController::class, 'summary'])
+            ->middleware('permission:reports.view');
     });
 });
